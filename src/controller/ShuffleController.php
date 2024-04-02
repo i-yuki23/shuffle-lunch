@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/../lib/mysql.php';
 require_once __DIR__ . '/../lib/utils.php';
-require_once __DIR__ . '/../core/Controller.php';
 
 class ShuffleController extends Controller
 {
