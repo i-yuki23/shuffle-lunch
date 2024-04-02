@@ -34,6 +34,7 @@ class Application
             '/' => ['controller' => 'shuffle', 'action' => 'index'],
             '/shuffle' => ['controller' => 'shuffle', 'action' => 'create'],
             '/employee' => ['controller' => 'employee', 'action' => 'index'],
+            '/employee/create' => ['controller' => 'employee', 'action' => 'create'],
         ];
     }
 

@@ -12,7 +12,7 @@
         </h1>
     </header>
     <div>
-        <form action="employee.php" method="post">
+        <form action="/employee/create" method="post">
             <label>Register Employee Name</label>
             <input type="text" id="employee_name" name="employee_name">
             <input type="submit" value="Submit">

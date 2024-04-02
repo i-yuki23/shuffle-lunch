@@ -14,13 +14,22 @@ class EmployeeController extends Controller
         include(__DIR__ . "/../views/employee.php");
     }
 
-    // public function create()
-    // {
-    //     $groups = [];
-    //     $link = dbConnect();
-    //     $employeeNames = listEmployeeName($link);
-    //     $groups = createGroup($employeeNames);
+    public function create()
+    {
+        $link = dbConnect();
+
+        // 情報を変数に格納
+        $employeeName = '';
+        if (isset($_POST['employee_name']))
+        {
+            $employeeName = $_POST['employee_name'];
+            $query = "INSERT INTO employees (name) VALUES ('{$employeeName}')";
+            mysqli_query($link, $query);
+        }
+        header("Location: /employee");
         
-    //     include __DIR__ . "/../views/index.php";
-    // }
+        $employeeNames = listEmployeeName($link);
+        
+        include(__DIR__ . "/../views/employee.php");
+    }
 }
