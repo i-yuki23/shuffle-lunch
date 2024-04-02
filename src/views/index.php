@@ -15,7 +15,7 @@
         <a href="employee.php">Register</a>
     </div>
     <div>
-        <form action="index.php" method="get">
+        <form action="shuffle" method="post">
             <input type="submit" name="shuffle" value="Shuffle">
         </form>
     </div>
