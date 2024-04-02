@@ -2,14 +2,10 @@
 
 require_once __DIR__ . '/../lib/mysql.php';
 require_once __DIR__ . '/../lib/utils.php';
+require_once __DIR__ . '/../core/Controller.php';
 
-class ShuffleController
+class ShuffleController extends Controller
 {
-    public function run($action)
-    {
-        $this->$action();
-    }
-
     public function index()
     {
         $groups = [];

@@ -12,7 +12,7 @@
         </h1>
     </header>
     <div>
-        <a href="employee.php">Register</a>
+        <a href="employee">Register</a>
     </div>
     <div>
         <form action="shuffle" method="post">
