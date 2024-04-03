@@ -7,9 +7,10 @@ class ShuffleController extends Controller
 {
     public function index()
     {
-        $groups = [];
         dbConnect();
-        include __DIR__ . "/../views/index.php";
+        return $this->render([
+            'groups' => []
+        ]);
     }
 
     public function create()
