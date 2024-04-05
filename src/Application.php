@@ -4,17 +4,19 @@ class Application
 {
     protected $router;
     protected $response;
+    public $request;
 
     public function __construct()
     {
         $this->router = new Router($this->registerRoutes());
         $this->response = new Response();
+        $this->request = new Request();
     }
 
     public function run()
     {   
         try {
-            $params = $this->router->resolve($this->getPathInfo());
+            $params = $this->router->resolve($this->request->getPathInfo());
             if (!$params) {
                 throw new HttpNotFoundException();
             }
@@ -34,7 +36,7 @@ class Application
         if (!class_exists($controllerClass)) {
             throw new HttpNotFoundException();
         }
-        $controller = new $controllerClass();
+        $controller = new $controllerClass($this);
         $content = $controller->run($action);
         $this->response->setContent($content);
     }
@@ -47,11 +49,6 @@ class Application
             '/employee' => ['controller' => 'employee', 'action' => 'index'],
             '/employee/create' => ['controller' => 'employee', 'action' => 'create'],
         ];
-    }
-
-    private function getPathInfo()
-    {
-        return $_SERVER['REQUEST_URI'];
     }
 
     private function render404Page()

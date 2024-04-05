@@ -18,6 +18,9 @@ class EmployeeController extends Controller
 
     public function create()
     {
+        if (!$this->request->isPost()) {
+            throw new HttpNotFoundException();
+        }
         $link = dbConnect();
 
         // 情報を変数に格納
