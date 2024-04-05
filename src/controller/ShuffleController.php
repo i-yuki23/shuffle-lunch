@@ -20,6 +20,8 @@ class ShuffleController extends Controller
         $employeeNames = listEmployeeName($link);
         $groups = createGroup($employeeNames);
         
-        include __DIR__ . "/../views/index.php";
+        return $this->render([
+            'groups' => $groups,
+        ], 'index');
     }
 }

@@ -61,9 +61,7 @@ class Application
             <<<EOF
 <!DOCTYPE html>
 <head>
-    <!-- <meta charset="utf-8"> -->
     <meta name="viewpoint" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="stylesheets/css/app.css"> -->
     <title>Shuffle Lunch</title>
 </head>
 <body>
@@ -74,6 +72,5 @@ class Application
 </html>
 EOF
         );
-        $this->response->send();
     }
 }

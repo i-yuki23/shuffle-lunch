@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>
-            <a href="index.php">Shuffle Lunch</a>
+            <a href="/">Shuffle Lunch</a>
         </h1>
     </header>
     <div>

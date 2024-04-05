@@ -10,7 +10,10 @@ class EmployeeController extends Controller
         $link = dbConnect();
         $employeeNames = listEmployeeName($link);
         
-        include(__DIR__ . "/../views/employee.php");
+        return $this->render([
+            'title' => 'Emplypee Registration',
+            'employeeNames' => $employeeNames
+        ]);
     }
 
     public function create()
@@ -19,16 +22,16 @@ class EmployeeController extends Controller
 
         // 情報を変数に格納
         $employeeName = '';
-        if (isset($_POST['employee_name']))
-        {
-            $employeeName = $_POST['employee_name'];
-            $query = "INSERT INTO employees (name) VALUES ('{$employeeName}')";
-            mysqli_query($link, $query);
-        }
+        $employeeName = $_POST['employee_name'];
+        $query = "INSERT INTO employees (name) VALUES ('{$employeeName}')";
+        mysqli_query($link, $query);   
         header("Location: /employee");
         
         $employeeNames = listEmployeeName($link);
         
-        include(__DIR__ . "/../views/employee.php");
+        return $this->render([
+            'title' => 'Emplypee Registration',
+            'employeeNames' => $employeeNames
+        ], 'index');
     }
 }
