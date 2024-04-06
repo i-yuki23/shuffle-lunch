@@ -4,13 +4,21 @@ class Application
 {
     protected $router;
     protected $response;
-    public $request;
+    protected $request;
+    protected $databaseManager;
 
     public function __construct()
     {
         $this->router = new Router($this->registerRoutes());
         $this->response = new Response();
         $this->request = new Request();
+        $this->databaseManager = new DatabaseManager();
+        $this->databaseManager->connect([
+            'dbHost' => "db",
+            'dbName' => "test_database",
+            'dbPassword' => "pass",
+            'dbUsername' => "test_user",
+        ]);
     }
 
     public function run()
@@ -49,6 +57,16 @@ class Application
             '/employee' => ['controller' => 'employee', 'action' => 'index'],
             '/employee/create' => ['controller' => 'employee', 'action' => 'create'],
         ];
+    }
+
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    public function getDatabaseManager()
+    {
+        return $this->databaseManager;
     }
 
     private function render404Page()

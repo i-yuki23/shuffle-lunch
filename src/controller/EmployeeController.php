@@ -7,9 +7,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $link = dbConnect();
-        $employeeNames = listEmployeeName($link);
-        
+        $employeeNames = $this->databaseManager->get('Employee')->fetchAllName();        
         return $this->render([
             'title' => 'Emplypee Registration',
             'employeeNames' => $employeeNames
@@ -21,17 +19,12 @@ class EmployeeController extends Controller
         if (!$this->request->isPost()) {
             throw new HttpNotFoundException();
         }
-        $link = dbConnect();
 
         // 情報を変数に格納
-        $employeeName = '';
-        $employeeName = $_POST['employee_name'];
-        $query = "INSERT INTO employees (name) VALUES ('{$employeeName}')";
-        mysqli_query($link, $query);   
-        header("Location: /employee");
-        
-        $employeeNames = listEmployeeName($link);
-        
+        $employee = $this->databaseManager->get('Employee');
+        $employeeNames = $employee->fetchAllName();   
+        $employee->insert($_POST['employee_name']);
+   
         return $this->render([
             'title' => 'Emplypee Registration',
             'employeeNames' => $employeeNames

@@ -7,7 +7,6 @@ class ShuffleController extends Controller
 {
     public function index()
     {
-        dbConnect();
         return $this->render([
             'groups' => []
         ]);
@@ -18,9 +17,7 @@ class ShuffleController extends Controller
         if (!$this->request->isPost()) {
             throw new HttpNotFoundException();
         }
-        $groups = [];
-        $link = dbConnect();
-        $employeeNames = listEmployeeName($link);
+        $employeeNames = $this->databaseManager->get('Employee')->fetchAllName();
         $groups = createGroup($employeeNames);
         
         return $this->render([
